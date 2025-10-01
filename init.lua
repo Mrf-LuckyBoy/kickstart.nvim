@@ -672,8 +672,12 @@ require('lazy').setup({
       --        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
       local servers = {
         -- clangd = {},
-        -- gopls = {},
+        gopls = {},
         pyright = {},
+        ts_ls = {},
+        cssls = {},
+        tailwindcss = {},
+        emmet_ls = {},
         -- rust_analyzer = {},
         -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
         --
@@ -720,7 +724,7 @@ require('lazy').setup({
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
       require('mason-lspconfig').setup {
-        ensure_installed = { 'ts_ls', 'pyright' }, -- explicitly set to an empty table (Kickstart populates installs via mason-tool-installer)
+        ensure_installed = { 'ts_ls', 'pyright', 'gopls' }, -- explicitly set to an empty table (Kickstart populates installs via mason-tool-installer)
         automatic_installation = true,
         handlers = {
           function(server_name)
@@ -774,6 +778,12 @@ require('lazy').setup({
         -- You can use 'stop_after_first' to run the first available formatter from the list
         javascript = { 'prettierd', 'prettier', stop_after_first = true },
         typescript = { 'prettierd', 'prettier', stop_after_first = true },
+        javascriptreact = { 'prettierd', 'prettier', stop_after_first = true },
+        typescriptreact = { 'prettierd', 'prettier', stop_after_first = true },
+        json = { 'prettierd', 'prettier' },
+        html = { 'prettierd', 'prettier' },
+        css = { 'prettierd', 'prettier' },
+        scss = { 'prettierd', 'prettier' },
       },
     },
   },
@@ -945,7 +955,24 @@ require('lazy').setup({
     main = 'nvim-treesitter.configs', -- Sets main module to use for opts
     -- [[ Configure Treesitter ]] See `:help nvim-treesitter`
     opts = {
-      ensure_installed = { 'javascript', 'typescript', 'bash', 'c', 'diff', 'html', 'lua', 'luadoc', 'markdown', 'markdown_inline', 'query', 'vim', 'vimdoc' },
+      ensure_installed = { 
+        'javascript', 
+        'typescript', 
+        'bash', 
+        'c', 
+        'diff', 
+        'html', 
+        'lua', 
+        'luadoc', 
+        'markdown', 
+        'markdown_inline', 
+        'query', 
+        'vim', 
+        'vimdoc',
+        'tsx',
+        'json',
+        'css'
+       },
       -- Autoinstall languages that are not installed
       auto_install = true,
       highlight = {
@@ -957,6 +984,24 @@ require('lazy').setup({
       },
       indent = { enable = true, disable = { 'ruby' } },
     },
+
+    {
+      'NvChad/nvim-colorizer.lua',
+      opts = {
+        filetypes = { 'css', 'scss', 'sass', 'html', 'javascript', 'typescript', 'typescriptreact', 'javascriptreact' },
+        user_default_options = { names = false },
+      },
+    },
+    
+    -- Autoclose tags (HTML, JSX)
+    { 'windwp/nvim-ts-autotag', opts = {} },
+    
+    -- Autopairs (auto close brackets/quotes)
+    { 'windwp/nvim-autopairs', event = "InsertEnter", opts = {} },
+    
+    -- TailwindCSS IntelliSense
+    { 'princejoogie/tailwind-highlight.nvim', opts = {} },
+
     -- There are additional nvim-treesitter modules that you can use to interact
     -- with nvim-treesitter. You should go explore a few and see what interests you:
     --

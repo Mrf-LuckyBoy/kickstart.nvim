@@ -955,24 +955,24 @@ require('lazy').setup({
     main = 'nvim-treesitter.configs', -- Sets main module to use for opts
     -- [[ Configure Treesitter ]] See `:help nvim-treesitter`
     opts = {
-      ensure_installed = { 
-        'javascript', 
-        'typescript', 
-        'bash', 
-        'c', 
-        'diff', 
-        'html', 
-        'lua', 
-        'luadoc', 
-        'markdown', 
-        'markdown_inline', 
-        'query', 
-        'vim', 
+      ensure_installed = {
+        'javascript',
+        'typescript',
+        'bash',
+        'c',
+        'diff',
+        'html',
+        'lua',
+        'luadoc',
+        'markdown',
+        'markdown_inline',
+        'query',
+        'vim',
         'vimdoc',
         'tsx',
         'json',
-        'css'
-       },
+        'css',
+      },
       -- Autoinstall languages that are not installed
       auto_install = true,
       highlight = {
@@ -984,23 +984,6 @@ require('lazy').setup({
       },
       indent = { enable = true, disable = { 'ruby' } },
     },
-
-    {
-      'NvChad/nvim-colorizer.lua',
-      opts = {
-        filetypes = { 'css', 'scss', 'sass', 'html', 'javascript', 'typescript', 'typescriptreact', 'javascriptreact' },
-        user_default_options = { names = false },
-      },
-    },
-    
-    -- Autoclose tags (HTML, JSX)
-    { 'windwp/nvim-ts-autotag', opts = {} },
-    
-    -- Autopairs (auto close brackets/quotes)
-    { 'windwp/nvim-autopairs', event = "InsertEnter", opts = {} },
-    
-    -- TailwindCSS IntelliSense
-    { 'princejoogie/tailwind-highlight.nvim', opts = {} },
 
     -- There are additional nvim-treesitter modules that you can use to interact
     -- with nvim-treesitter. You should go explore a few and see what interests you:
